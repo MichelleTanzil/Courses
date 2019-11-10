@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Course</title>
+</head>
+
+<body>
+  <h1 class="display-3 text-center">Are you sure you want to delete the following course?</h1>
+  <p>Name: {{course_in_question.name}}</p>
+  <p>Description: {{course_in_question.description.content}}</p>
+
+  <form action="/DNDestroy" method='POST'>
+    {%csrf_token%}
+    <button type="submit">No</button>
+  </form>
+  <form action="/destroy_course/{{course_in_question.id}}" method='POST'>
+    {%csrf_token%}
+    <button type="submit">Yes, I want to delete this!</button>
+  </form>
+</body>
+
+</html>
