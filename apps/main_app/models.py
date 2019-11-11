@@ -12,7 +12,6 @@ class CourseManager(models.Manager):
 
 class Course(models.Model):
     name = models.CharField(max_length=60)
-    comment = models.TextField(blank = True)
     description = models.OneToOneField('Description')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -37,4 +36,12 @@ class Description(models.Model):
 
     def __repr__(self):
         return f"<Description Object: {self.id} {self.content} >"
+
+class Comment(models.Model):
+    content = models.TextField (blank = True)
+    course = models.ForeignKey(Course, related_name="course_comments")
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    def __repr__(self):
+        return f"<Comment Object: {self.id} {self.content}>"
 
